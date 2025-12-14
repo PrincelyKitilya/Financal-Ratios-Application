@@ -135,8 +135,8 @@ def load_and_clean_data():
     """Load and clean the financial data"""
     try:
         # Load data
-        master_df = pd.read_excel("c:/Users/12508/Documents/Financial ratios/pipeline/master_ratios.xlsx")
-        master_inputs_df = pd.read_excel("c:/Users/12508/Documents/Financial ratios/pipeline/master_inputs.xlsx")
+        master_df = pd.read_excel("./pipeline/master_ratios.xlsx")
+        master_inputs_df = pd.read_excel("./pipeline/master_inputs.xlsx")
 
         # Clean column names
         master_df.columns = master_df.columns.str.strip()
