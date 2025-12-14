@@ -106,9 +106,10 @@ The app automatically generates **color-coded warnings** based on industry bench
 
 ## Getting Started
 
+## deployed application
+https://financal-ratios-application-jmkwsmten7txwh7ykbgs9d.streamlit.app
+
 ### Quick Launch:
 ```bash
 streamlit run app.py
 
-### deployed application
-https://financal-ratios-application-jmkwsmten7txwh7ykbgs9d.streamlit.app
