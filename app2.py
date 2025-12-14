@@ -241,17 +241,17 @@ for company in selected_companies:
     # Check for negative interest coverage
     interest_coverage = company_data[company_data['ratio_name'] == 'Interest Coverage Ratio']['2024'].values[0]
     if interest_coverage < 0:
-        alerts.append(f"⚠️ {company}: Negative Interest Coverage ({interest_coverage:.2f})")
+        alerts.append(f"{company}: Negative Interest Coverage ({interest_coverage:.2f})")
 
     # Check for low liquidity
     current_ratio = company_data[company_data['ratio_name'] == 'Current Ratio']['2024'].values[0]
     if current_ratio < 1.2:
-        alerts.append(f"⚠️ {company}: Low Current Ratio ({current_ratio:.2f})")
+        alerts.append(f"{company}: Low Current Ratio ({current_ratio:.2f})")
 
     # Check for negative margins
     net_margin = company_data[company_data['ratio_name'] == 'Net Profit Margin']['2024'].values[0]
     if net_margin < 0:
-        alerts.append(f"⚠️ {company}: Negative Net Margin ({net_margin:.1%})")
+        alerts.append(f"{company}: Negative Net Margin ({net_margin:.1%})")
 
 if alerts:
     with st.expander("Critical Alerts", expanded=True):
