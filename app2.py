@@ -836,6 +836,7 @@ if show_raw_data:
 # Footer
 st.markdown("---")
 st.markdown("*Dashboard created with Streamlit & Plotly | Data updated: 2024*")
+st.markdown("By Princely Hezekiel Kitilya.")
 
 # Add download button for filtered data
 if len(selected_companies) > 0:
