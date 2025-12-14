@@ -2,5 +2,3 @@ streamlit>=1.28.0
 pandas>=2.0.0
 numpy>=1.24.0
 plotly>=5.17.0
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://appname.streamlit.app/)
