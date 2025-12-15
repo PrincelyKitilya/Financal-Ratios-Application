@@ -13,117 +13,284 @@ st.set_page_config(
 )
 
 # Dark mode compatible CSS
+import streamlit as st
+
+# Add CSS with theme-aware variables
 st.markdown("""
 <style>
+    /* ============================================
+       THEME-AWARE CSS VARIABLES
+       ============================================ */
+    
+    :root {
+        /* Light theme defaults */
+        --primary-bg: #ffffff;
+        --secondary-bg: #f0f2f6;
+        --text-color: #262730;
+        --border-color: #e6e9ef;
+        --accent-color: #3498db;
+        --warning-color: #ffc107;
+        --info-color: #17a2b8;
+        --success-color: #28a745;
+        --card-bg: #f8f9fa;
+        --sidebar-bg: #f8f9fa;
+    }
+    
+    /* Dark theme overrides */
+    [data-theme="dark"] {
+        --primary-bg: #0E1117;
+        --secondary-bg: #262730;
+        --text-color: #FAFAFA;
+        --border-color: #555555;
+        --accent-color: #3498db;
+        --warning-color: #ffd54f;
+        --info-color: #4dd0e1;
+        --success-color: #6fcf97;
+        --card-bg: rgba(52, 58, 64, 0.5);
+        --sidebar-bg: #1a1a2e;
+    }
+    
+    /* ============================================
+       CORE APP STYLING (uses CSS variables)
+       ============================================ */
+    
+    /* Apply theme variables to main app */
+    .stApp {
+        background-color: var(--primary-bg) !important;
+        color: var(--text-color) !important;
+    }
+    
+    /* Force all text to use theme text color */
+    p, h1, h2, h3, h4, h5, h6, div, span, label {
+        color: var(--text-color) !important;
+    }
+    
+    /* ============================================
+       YOUR CUSTOM STYLES (updated to use CSS variables)
+       ============================================ */
+    
     /* Main title */
     .main-header {
         font-size: 2.5rem;
-        color: #ffffff;
+        color: var(--text-color) !important;
         text-align: center;
         margin-bottom: 2rem;
         font-weight: 700;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    /* Dark mode specific text shadow for titles */
+    [data-theme="dark"] .main-header {
         text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
 
-    /* Company header - dark mode compatible */
+    /* Company header - theme aware */
     .company-header {
-        background: linear-gradient(90deg, #2c3e50, #34495e);
-        color: #ecf0f1;
+        background: linear-gradient(90deg, var(--secondary-bg), var(--card-bg));
+        color: var(--text-color) !important;
         padding: 0.5rem 1rem;
         border-radius: 5px;
         margin: 1rem 0;
         font-weight: 600;
-        border-left: 4px solid #3498db;
+        border-left: 4px solid var(--accent-color);
+    }
+    
+    /* Dark mode specific company header */
+    [data-theme="dark"] .company-header {
+        background: linear-gradient(90deg, #2c3e50, #34495e);
+        color: #ecf0f1 !important;
     }
 
-    /* Warning box for alerts - visible on dark background */
+    /* Warning box - theme aware */
     .warning-box {
+        background-color: rgba(255, 193, 7, 0.15);
+        border: 1px solid var(--warning-color);
+        border-left: 5px solid var(--warning-color);
+        padding: 1rem;
+        border-radius: 5px;
+        margin: 0.5rem 0;
+        color: var(--text-color) !important;
+    }
+    
+    /* Theme-specific warning box colors */
+    .warning-box strong, .warning-box b {
+        color: var(--warning-color) !important;
+    }
+    
+    [data-theme="dark"] .warning-box {
         background-color: rgba(255, 193, 7, 0.2);
-        border: 1px solid #ffc107;
-        border-left: 5px solid #ffc107;
-        padding: 1rem;
-        border-radius: 5px;
-        margin: 0.5rem 0;
-        color: #ffd54f;
+        color: #ffd54f !important;
     }
 
-    /* Insight box - visible on dark background */
+    /* Insight box - theme aware */
     .insight-box {
+        background-color: rgba(23, 162, 184, 0.15);
+        border: 1px solid var(--info-color);
+        border-left: 5px solid var(--info-color);
+        padding: 1rem;
+        border-radius: 5px;
+        margin: 0.5rem 0;
+        color: var(--text-color) !important;
+    }
+    
+    /* Theme-specific insight box colors */
+    .insight-box strong, .insight-box b {
+        color: var(--info-color) !important;
+    }
+    
+    [data-theme="dark"] .insight-box {
         background-color: rgba(23, 162, 184, 0.2);
-        border: 1px solid #17a2b8;
-        border-left: 5px solid #17a2b8;
-        padding: 1rem;
-        border-radius: 5px;
-        margin: 0.5rem 0;
-        color: #4dd0e1;
+        color: #4dd0e1 !important;
     }
 
-    /* Success box */
+    /* Success box - theme aware */
     .success-box {
-        background-color: rgba(40, 167, 69, 0.2);
-        border: 1px solid #28a745;
-        border-left: 5px solid #28a745;
+        background-color: rgba(40, 167, 69, 0.15);
+        border: 1px solid var(--success-color);
+        border-left: 5px solid var(--success-color);
         padding: 1rem;
         border-radius: 5px;
         margin: 0.5rem 0;
-        color: #6fcf97;
+        color: var(--text-color) !important;
+    }
+    
+    /* Theme-specific success box colors */
+    .success-box strong, .success-box b {
+        color: var(--success-color) !important;
+    }
+    
+    [data-theme="dark"] .success-box {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #6fcf97 !important;
     }
 
-    /* Metric card */
+    /* Metric card - theme aware */
     .metric-card {
-        background-color: rgba(52, 58, 64, 0.5);
+        background-color: var(--card-bg);
         padding: 1rem;
         border-radius: 10px;
-        border-left: 4px solid #3498db;
+        border-left: 4px solid var(--accent-color);
         margin: 0.5rem 0;
+        color: var(--text-color) !important;
     }
 
-    /* Tab styling */
+    /* Tab styling - theme aware */
     .stTabs [data-baseweb="tab-list"] {
         gap: 2rem;
+        background-color: var(--secondary-bg) !important;
     }
 
     .stTabs [data-baseweb="tab"] {
         height: 50px;
         white-space: pre-wrap;
-        background-color: #2c3e50;
+        background-color: var(--secondary-bg);
         border-radius: 5px 5px 0px 0px;
         gap: 1px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 10px;
+        color: var(--text-color) !important;
     }
 
     .stTabs [aria-selected="true"] {
-        background-color: #3498db !important;
+        background-color: var(--accent-color) !important;
         color: white !important;
     }
 
-    /* Dataframe styling */
+    /* Dataframe styling - theme aware */
     .stDataFrame {
+        background-color: rgba(0,0,0,0.05);
+    }
+    
+    [data-theme="dark"] .stDataFrame {
         background-color: rgba(0,0,0,0.1);
     }
 
-    /* Make text more readable on dark background */
-    .stMarkdown, .stText, .stMetric {
-        color: #ecf0f1 !important;
+    /* Streamlit widget styling - theme aware */
+    .stSelectbox select, .stMultiselect div, 
+    .stSlider div, .stNumberInput input,
+    .stTextInput input, .stDateInput input,
+    .stTimeInput input, .stTextArea textarea {
+        background-color: var(--primary-bg) !important;
+        color: var(--text-color) !important;
+        border-color: var(--border-color) !important;
     }
     
-    #background-color: #2c3e50;
-    /* Streamlit widget styling */
-    .stSelectbox, .stMultiselect, .stSlider, .stNumberInput {
-        color: white;
+    /* Dropdown menus */
+    .stSelectbox div[role="listbox"], 
+    .stMultiselect div[role="listbox"] {
+        background-color: var(--primary-bg) !important;
+        color: var(--text-color) !important;
+        border-color: var(--border-color) !important;
     }
 
-    /* Sidebar styling */
+    /* Sidebar styling - theme aware */
     section[data-testid="stSidebar"] {
-        background-color: #1a1a2e;
+        background-color: var(--sidebar-bg) !important;
+        color: var(--text-color) !important;
+    }
+    
+    /* Sidebar text */
+    section[data-testid="stSidebar"] * {
+        color: var(--text-color) !important;
     }
 
     /* Plotly chart background fix */
     .js-plotly-plot .plotly {
         background-color: transparent !important;
+    }
+    
+    /* ============================================
+       ADDITIONAL THEME-SPECIFIC FIXES
+       ============================================ */
+    
+    /* Fix for metric values in light mode */
+    [data-theme="light"] .stMetric {
+        color: var(--text-color) !important;
+    }
+    
+    /* Fix for expander headers */
+    .streamlit-expanderHeader {
+        background-color: var(--secondary-bg) !important;
+        color: var(--text-color) !important;
+    }
+    
+    /* Fix for alerts and info boxes */
+    .stAlert {
+        background-color: var(--secondary-bg) !important;
+        color: var(--text-color) !important;
+        border-color: var(--border-color) !important;
+    }
+    
+    /* Fix for tables */
+    table, .dataframe {
+        background-color: var(--primary-bg) !important;
+        color: var(--text-color) !important;
+    }
+    
+    table th, table td, .dataframe th, .dataframe td {
+        color: var(--text-color) !important;
+        border-color: var(--border-color) !important;
+    }
+    
+    /* Fix for buttons */
+    .stButton button {
+        background-color: var(--accent-color) !important;
+        color: white !important;
+    }
+    
+    /* Fix for radio buttons and checkboxes */
+    .stRadio label, .stCheckbox label {
+        color: var(--text-color) !important;
+    }
+    
+    /* Fix for divider */
+    hr {
+        border-color: var(--border-color) !important;
+    }
+    
+    /* Fix for code blocks */
+    .stCodeBlock {
+        background-color: var(--secondary-bg) !important;
+        color: var(--text-color) !important;
     }
 </style>
 """, unsafe_allow_html=True)
