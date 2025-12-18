@@ -1,0 +1,11 @@
+
+[theme]
+# Force light theme always
+base = "light"
+
+# Optional: Customize your light theme colors
+primaryColor = "#3498db"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#262730"
+font = "sans serif"
