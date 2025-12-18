@@ -12,44 +12,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Dark mode compatible CSS
-import streamlit as st
 
 # Add CSS with theme-aware variables
 st.markdown("""
 <style>
-    /* ============================================
-       THEME-AWARE CSS VARIABLES
-       ============================================ */
-    
-    :root {
-        /* Light theme defaults */
-        --primary-bg: #ffffff;
-        --secondary-bg: #f0f2f6;
-        --text-color: #262730;
-        --border-color: #e6e9ef;
-        --accent-color: #3498db;
-        --warning-color: #ffc107;
-        --info-color: #17a2b8;
-        --success-color: #28a745;
-        --card-bg: #f8f9fa;
-        --sidebar-bg: #f8f9fa;
-    }
-    
-    /* Dark theme overrides */
-    [data-theme="dark"] {
-        --primary-bg: #0E1117;
-        --secondary-bg: #262730;
-        --text-color: #FAFAFA;
-        --border-color: #555555;
-        --accent-color: #3498db;
-        --warning-color: #ffd54f;
-        --info-color: #4dd0e1;
-        --success-color: #6fcf97;
-        --card-bg: rgba(52, 58, 64, 0.5);
-        --sidebar-bg: #1a1a2e;
-    }
-    
     /* ============================================
        CORE APP STYLING (uses CSS variables)
        ============================================ */
