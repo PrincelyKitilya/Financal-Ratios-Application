@@ -158,7 +158,6 @@ st.markdown("""
 
     .stTabs [aria-selected="true"] {
         background-color: var(--accent-color) !important;
-        color: white !important;
     }
 
     /* Dataframe styling - theme aware */
