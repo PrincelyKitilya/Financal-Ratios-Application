@@ -3,7 +3,7 @@
 # Force light theme always
 base = "light"
 
-# Optional: Customize your light theme colors
+#customized themes
 primaryColor = "#3498db"
 backgroundColor = "#ffffff"
 secondaryBackgroundColor = "#f0f2f6"
