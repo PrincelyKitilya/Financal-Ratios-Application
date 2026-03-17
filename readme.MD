@@ -1,5 +1,8 @@
 # Financial Ratio Analysis Dashboard
 
+## deployed application
+https://financal-ratios-application-jmkwsmten7txwh7ykbgs9d.streamlit.app
+
 ## Overview
 A comprehensive Streamlit application that automates financial ratio analysis for multiple companies. The app processes financial statements, calculates key ratios, identifies financial health warnings, and provides interactive visualizations for comparative analysis.
 
@@ -105,9 +108,6 @@ The app automatically generates **color-coded warnings** based on industry bench
 - **Scalable Architecture:** Easy to add new companies or industries
 
 ## Getting Started
-
-## deployed application
-https://financal-ratios-application-jmkwsmten7txwh7ykbgs9d.streamlit.app
 
 ### Quick Launch:
 ```bash
